@@ -68,6 +68,10 @@ resource dev2 "Samantha Müller" {
 resource dev3 "Peter Green" {
   email "kkk@unizar.es"
 }
+resource dev4 "Paula Landa" {
+  email "819148@unizar.es"
+  workinghours mon - fri 9:00 - 13:00
+}
 
 # Now we specify the work packages. The whole project is described as
 # a task that contains subtasks. These subtasks are then broken down
@@ -151,7 +155,7 @@ task WMGame "Web & Mobile Game" {
   task tmovilFM "Movil Front End" {
     purge chargeset
     chargeset mFront
-    responsible dev3
+    responsible dev3, dev4
     depends WMGame.tback.tBEd
     task tGUId "Movil GUI Design" {
       effort 6d
