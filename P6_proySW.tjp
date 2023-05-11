@@ -183,7 +183,7 @@ task WMGame "Web & Mobile Game" {
   }
 
   task ttest "Accpetance tests" {
-      minstart %{2023-06-01}
+      start 2023-06-01
       effort 10d
       allocate boss
       allocate dev2
