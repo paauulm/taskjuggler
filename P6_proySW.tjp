@@ -270,7 +270,7 @@ textreport frame "" {
   }
 
 
-  textreport overviewPlanningIni "Overview" {
+  textreport planning "overviewPlanningIni" {
     formats html
     center '<[report id="overviewPlanningIni"]>'
   }
