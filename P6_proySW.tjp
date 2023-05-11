@@ -175,6 +175,13 @@ task WMGame "Web & Mobile Game" {
     }
   }
 
+  task cloud "Despliegue en la nube"{
+    purge chargeset
+    chargeset mFront
+    responsible dev3
+    depends WMGame.tmovilFM.tFEt
+  }
+
   task ttest "Accpetance tests" {
       effort 10d
       allocate boss
