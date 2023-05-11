@@ -1,7 +1,7 @@
 /*
- * This file contains the practice 6 source code corresponding with the 
+ * This file contains the practice 6 source code corresponding with the
  * project planification using TaskJuggler in the "Proyecto Software" course.
- * It is based on the Tutorial project offered by TaskJuggler and maintains 
+ * It is based on the Tutorial project offered by TaskJuggler and maintains
  * some elements of it
  */
 
@@ -78,7 +78,7 @@ task WMGame "Web & Mobile Game" {
   # All work-related costs will be booked to this account unless the
   # subtasks specify something different.
   chargeset manag
-  
+
   # For the duration of the project we have running cost that are not
   # included in the labor cost.
   charge 60 perday
@@ -90,8 +90,9 @@ task WMGame "Web & Mobile Game" {
       depends WMGame.deliveries.start
   }
 
+
   task tback "Back End" {
-    # It is necessary to “purge” the “chargeset” because it has been assigned previously to other variable 
+    # It is necessary to “purge” the “chargeset” because it has been assigned previously to other variable
     purge chargeset
     chargeset back
     responsible dev1
@@ -143,7 +144,34 @@ task WMGame "Web & Mobile Game" {
       effort 6d
       allocate dev1
       depends WMGame.twebF.tFEc
-    }    
+    }
+  }
+
+  task tmovilFM "Movil Front End" {
+    purge chargeset
+    chargeset mFront
+    responsible dev3
+    depends WMGame.tback.tBEd
+    task tGUId "Movil GUI Design" {
+      effort 6d
+      actual:effort 19d
+      allocate dev3
+      journalentry 2023-04-11 "Problems with the GUI design tool" {
+        author dev3
+        alert yellow
+        summary "The tool used for the GUI design has given me a lot of problems. I recommend to look for other one."
+      }
+    }
+    task tFEc "Movil Front End Construction" {
+      effort 15d
+      allocate dev2, dev3
+      depends WMGame.twebF.tGUId
+    }
+    task tFEt "Movil Front End Test" {
+      effort 6d
+      allocate dev1
+      depends WMGame.twebF.tFEc
+    }
   }
 
   task ttest "Accpetance tests" {
@@ -160,7 +188,7 @@ task WMGame "Web & Mobile Game" {
       depends WMGame.tback
   }
 
-    
+
   task deliveries "Milestones" {
 
     # Some milestones have customer payments associated with them. We
@@ -174,7 +202,7 @@ task WMGame "Web & Mobile Game" {
       # Here we use the built-in macro ${projectstart} to align the
       # start of the task with the above specified project time frame.
       start ${projectstart}
-  
+
       # At the beginning of this task we receive a payment from the
       # customer. This is credited to the account associated with this
       # task when the task starts.
